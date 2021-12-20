@@ -5,11 +5,12 @@ import ActiveCategories from "./components/storefront/current-category";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { Container } from "@mui/material";
-
+import Simplecart from "./components/cart/simplecart";
 function App() {
   return (
     <>
       <Header />
+      <Simplecart />
       <Container minHeight="100vh">
         <Categories />
         <ActiveCategories />
@@ -22,3 +23,4 @@ function App() {
 }
 
 export default App;
+

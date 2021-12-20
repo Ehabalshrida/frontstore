@@ -5,9 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { useSelector } from "react-redux";
 
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
+  const state = useSelector((state) => state);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -23,7 +25,9 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             OUR STORE
           </Typography>
-          <Button color="inherit">CART(0)</Button>
+          {/* <a href="/cart"> */}
+          <Button  color="inherit">Cart ({state.cartReducer.count})</Button>
+          {/* </a> */}
         </Toolbar>
       </AppBar>
     </Box>
