@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from "@material-ui/core/styles";
+import { addProduct, inventoryAction } from "../../store/cart";
 import { connect } from "react-redux";
 const useStyle = makeStyles((theme) => ({
   cardGrid: {
@@ -55,7 +56,17 @@ console.log(props);
                   <Button size="small" color="primary">
                     View
                   </Button>
-                  <Button size="small" color="primary">
+                  <Button
+                  size="small"
+                  color="primary"
+                  onClick={(inventory) => {
+                    if (product.inventory) {
+                      props.addProduct(product);
+                      props.inventoryAction(product);
+                    } else {
+                      alert("out of stook");
+                    }
+                  }}>
                     Add to Cart
                   </Button>
                 </CardActions>
@@ -74,4 +85,6 @@ const mapStateToProps = (state) => ({
   activeCategory: state.categoriesReducer.active
 });
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = { addProduct, inventoryAction };
+
+export default connect(mapStateToProps,mapDispatchToProps)(Products);
