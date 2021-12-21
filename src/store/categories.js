@@ -1,48 +1,55 @@
-const initailState={
-    categories:[
-      { name: "FOOD", displayName:"Food",description: "“Life is uncertain. Eat dessert first.”" },
-      {
-        name: "ELECTRONICS",
-        displayName:"Electronics",
-        description: "“Electronics is clearly the winner of the day.”",
-      },
-    ],
-    activeCategory: "",
+
+let initialState = {
+  categories: [
+    {
+      normalizedName: "FOOD",
+      displayName: "FOOD",
+      description: "you can find all food you want",
+    },
+    {
+      normalizedName: "ELECTRONICS",
+      displayName: "ELECTRONICS",
+      description: "this is a collection of electronics products",
+    },
+    {
+      normalizedName: "men's clothing",
+      displayName: "men's clothing",
+      description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    },
+  ],
+  activeCategory: "",
+};
+
+const ReduceCategory = (state = initialState, action) => {
+  let { type, payload } = action;
+  console.log(action);
+  switch (type) {
+    case "ACTIVE":
+        let active=state.categories.filter(item=>{
+            return payload===item.normalizedName? item.normalizedName:""
+        })
+        
+      let activeCategory = {
+        normalizedName:active[0].normalizedName,
+        displayName:active[0].displayName,
+        description:active[0].description
+      };
+      
+      let categories = state.categories;
+
+      return { activeCategory, categories };
+    default:
+      return state;
   }
-  
-  
-  const categoriesReducer=(state=initailState,action)=>{
-    const {type,payload}=action;
-    switch (type) {
-      case "ACTIVE":
-        let active=payload;
-        let categories = state.categories.map((category) => {
-                  if (category.name === payload) {
-                    return { name: category.name, description: category.description };
-                  }
-                  return category;
-                });
-        return {active,categories}
-  
-      case "RESET":
-        return initailState;  
-      default:
-        return state;
-    }
-  }
-  
-  
-  export const choosenCat=(name)=>{
-      return {
-      type: "ACTIVE",
-      payload: name,
-    };
-  }
-  
-  export const reset=()=>{
-    return{
-      type:"RESET"
-    }
-  }
-  
-  export default categoriesReducer;
+};
+
+//actions
+export const selectCate = (name) => {
+  return {
+    type: "ACTIVE",
+    payload: name,
+  };
+};
+
+
+export default ReduceCategory;
