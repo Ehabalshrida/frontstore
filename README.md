@@ -11,4 +11,4 @@
 
 
 ## Deployment on netlify
-[Netlify](https://hardcore-liskov-7282e3.netlify.app/)
+[Netlify](https://upbeat-fermi-4690e6.netlify.app/)

@@ -8,51 +8,20 @@ let initialState = {
     const { type, payload } = action;
     switch (type) {
       case "ADD":
-        const products = state.cart.map((product) => product.name);
-        if (!products.includes(payload.name)) {
-          let count = state.count + 1;
-          return { cart: [...state.cart, payload], show: true, count: count };
-        }
-        return { cart: state.cart, show: true, count: state.count };
+       let cart=[...state.cart,payload]
+        return { cart:cart , show: state.show, count: state.count +1};
   
       case "DELETE":
-        const product = state.cart.filter((product) => {
-          return product.name !== payload.name;
-        });
-        let count = state.count - 1;
-        return { cart: [...product], show: true, count: count };
+        console.log(payload);
+        const product = state.cart.filter((item,idx)=> idx!==payload.idx)
+        return { cart: product, show: state.show, count: state.count -1 };
   
+        case "SHOW":
+
+        return {cart:state.cart,show:payload,count:state.count}
       default:
         return state;
     }
-  };
-
-  export const addProduct = (product) => {
-    return {
-      type: "ADD",
-      payload: product,
-    };
-  };
-  
-  export const deleteProduct = (product) => {
-    return {
-      type: "DELETE",
-      payload: product,
-    };
-  };
-  
-  export const showCart = (status) => {
-    return {
-      type: "SHOW",
-      payload: status,
-    };
-  };
-  
-  export const inventoryAction = (product) => {
-    return {
-      type: "ADDPRODUCT",
-      payload: product,
-    };
   };
   
   export default cartReducer;
