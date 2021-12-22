@@ -11,4 +11,4 @@
 
 
 ## Deployment on netlify
-[Netlify](https://upbeat-fermi-4690e6.netlify.app/)
+[Netlify](https://eloquent-sammet-93209f.netlify.app/)
