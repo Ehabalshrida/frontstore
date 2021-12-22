@@ -1,27 +1,37 @@
-import React from 'react'
-import Categories from './components/Categories';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Products from './components/Products';
-import ActiveCategories from './components/activeCategories';
-import Simplecart from './components/cart/simplecart';
-
-
-function App() {
+import React from "react";
+import "./style/app.scss";
+import CategoriesComponent from "./components/storefront/categories";
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
+import Products from "./components/storefront/products";
+import ActiveCategory from "./components/storefront/current-category";
+import Simplecart from "./components/cart/simplecart";
+import Details from "./components/products/details";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AddressForm from "./components/cart/checkout";
+function App(props) {
   return (
-    <>
-      <Header/>
-      <Simplecart/>
-      <Categories/>
-
-      <ActiveCategories />
-      <Products/>
-      <Footer/>
-    </>
-  )
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Simplecart />
+            <CategoriesComponent />
+            <ActiveCategory />
+            <Products />
+          </Route>
+          <Route exact path="/cart">
+            <AddressForm />
+          </Route>
+          <Route exact path="/details">
+            <Details />
+          </Route>
+        </Switch>
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
-
-
-
+export default App;

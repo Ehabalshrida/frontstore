@@ -7,13 +7,12 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/material/Menu";
 import { connect } from "react-redux";
-import { showCart } from "../store/actions";
- function Header(props) {
- 
+function Header(props) {
+  
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" color="default">
           <Toolbar>
             <IconButton
               size="large"
@@ -27,15 +26,17 @@ import { showCart } from "../store/actions";
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Store Front
             </Typography>
-            <Button color="inherit" onClick={()=>{props.showCart(!props.cart.show)}} >Cart ({props.cart.count})</Button>
+           
           </Toolbar>
         </AppBar>
       </Box>
     </>
   );
 }
+
+
 const mapStateToprops = (state) => {
-  return { cart: state.cartReducer };
+  return { cart: state.cart };
 };
-const mapDispatchToProps = { showCart };
-export default connect(mapStateToprops,mapDispatchToProps)(Header);
+
+export default connect(mapStateToprops)(Header);
